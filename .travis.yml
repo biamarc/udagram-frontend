@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 10
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - npm install
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - npm run build
+  - docker --version
+  - docker build -t udagram-frontend .
+  - docker tag udagram-frontend-app "$DOCKER_USERNAME"/udagram-frontend:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push "$DOCKER_USERNAME"/udagram-frontend
