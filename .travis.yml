@@ -17,7 +17,7 @@ script:
   - npm run build
   - docker --version
   - docker build -t udagram-frontend .
-  - docker tag udagram-frontend-app "$DOCKER_USERNAME"/udagram-frontend:latest
+  - docker tag udagram-frontend "$DOCKER_USERNAME"/udagram-frontend:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
