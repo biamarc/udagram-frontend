@@ -18,7 +18,7 @@ before_script:
   - echo "no tests"
 
 script:
-  - npm run build
+  - npm run prod
   - docker --version
   - docker build -t udagram-frontend .
   - docker tag udagram-frontend "$DOCKER_USERNAME"/udagram-frontend:latest
